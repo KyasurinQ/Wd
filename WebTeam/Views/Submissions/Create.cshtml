@@ -1,0 +1,89 @@
+﻿@using System.IO
+
+@model WebTeam.Models.Submission
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Submission</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" id="createForm">
+            <!--Thêm enctype="multipart/form-data" để hỗ trợ upload file-->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" id="errorMessage" style="display:none;">
+                    <ul>
+                        @foreach (var key in ViewData.ModelState.Keys)
+                        {
+                            foreach (var errorMessage in ViewData.ModelState[key].Errors)
+                            {
+                                <li>@errorMessage.ErrorMessage</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CommentSubContent" class="control-label"></label>
+                <input asp-for="CommentSubContent" class="form-control" />
+                <span asp-validation-for="CommentSubContent" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="AttachmentFileName" class="control-label"></label>
+                <!-- Thay đổi accept để chỉ chấp nhận tệp định dạng PDF -->
+                <input type="file" name="file" class="form-control" accept=".pdf" required />
+                <span asp-validation-for="AttachmentFileName" class="text-danger"></span>
+                <div id="fileErrorMessage" class="text-danger" style="display:none;">
+                    Only .pdf files are allowed.
+                </div>
+            </div>
+
+
+            <!--Kết thúc input file-->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("createForm").addEventListener("submit", function (event) {
+            var fileInput = document.querySelector('input[type="file"]');
+            if (fileInput.files.length > 0) {
+                var fileExtension = fileInput.files[0].name.split('.').pop().toLowerCase();
+                if (fileExtension !== "pdf") { // Kiểm tra định dạng PDF
+                    document.getElementById("fileErrorMessage").style.display = "block";
+                    event.preventDefault(); // Ngăn chặn việc submit form
+                }
+            }
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

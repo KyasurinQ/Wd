@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebTeam",
+    "\\WebTeam\\Areas",
+    "\\WebTeam\\Areas\\Identity",
+    "\\WebTeam\\Areas\\Identity\\Pages",
+    "\\WebTeam\\Areas\\Identity\\Pages\\Account",
+    "\\WebTeam\\Areas\\Identity\\Pages\\Account\\Manage",
+    "\\WebTeam\\Views\\Home",
+    "\\WebTeam\\wwwroot\\asset",
+    "\\WebTeam\\wwwroot\\asset\\js",
+    "\\WebTeam\\wwwroot\\js"
+  ],
+  "SelectedNode": "\\WebTeam\\wwwroot",
+  "PreviewInSolutionExplorer": false
+}

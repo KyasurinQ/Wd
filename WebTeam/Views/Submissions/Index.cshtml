@@ -1,0 +1,94 @@
+﻿@model IEnumerable<WebTeam.Models.Submission>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubmissionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentSubContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentSubDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentFeedbackContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentFeedbackDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileSubName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileUploadDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttachmentFileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubmissionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentSubContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentSubDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentFeedbackContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentFeedbackDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileSubName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileUploadDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttachmentFileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SubmissionId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SubmissionId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SubmissionId">Delete</a> |
+                    <a href="@Url.Action("Download", "Submissions", new { id = item.SubmissionId })">Download File</a> |
+                    
+                        <a href="@Url.Action("ShowPdf", "Submissions", new { id = item.SubmissionId })">Hiển thị PDF</a>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
